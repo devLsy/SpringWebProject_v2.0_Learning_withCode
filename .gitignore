@@ -1,0 +1,30 @@
+# Directories #
+#################################
+/build/
+/bin/
+*/target/*
+.idea
+/classes/
+META-INF/
+# packages #
+#################################
+*.jar
+*.war
+*.7z
+*.zip
+*.tar
+*.dmg
+*.gz
+*.iso
+*.rar
+*.tar
+# Cimpiled source #
+################################
+*.class
+*.com
+*.exe
+*.o
+*.so
+# log #
+################################
+*.log
