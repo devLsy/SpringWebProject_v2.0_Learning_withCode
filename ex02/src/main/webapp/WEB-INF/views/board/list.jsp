@@ -16,7 +16,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">Board List Page</div>
+                        <div class="panel-heading">Board List Page
+                        <button id="regBtn" type="button" class="btn btn-xs pull-right">Register New Board</button>
+                        </div>
+                        
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -32,15 +35,15 @@
                                 
                                 <c:forEach items="${list}" var="board">
 									<tr>
-										<td><c:out value="${board.bno}"/></td>											
-										<td><c:out value="${board.title}"/></td>											
+										<td><c:out value="${board.bno}"/></td>
+										<td><a href='/board/get?bno=<c:out value="${board.bno}"/>'><c:out value="${board.title}"/></a></td>											
 										<td><c:out value="${board.writer}"/></td>											
 										<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate}" /></td>											
 										<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updatedate}" /></td>										
 									</tr>
-                                </c:forEach>
-                                
-                            </table>
+                                </c:forEach>	
+                                	
+                            </table>	
                             <!-- //table -->
                             
       <!-- Modtal 추가 -->
@@ -83,7 +86,9 @@ $(document).ready(function() {
 	
 	/* modal 처리 */
 	checkModal(result);
-	
+
+});
+
 	// modal 처리 function(BoardController에서 보내는 게시글 등록 시 게시글 번호를 받아서 처리)
 	function checkModal(result) {
 		
@@ -93,13 +98,20 @@ $(document).ready(function() {
 		
 		if(parseInt(result) > 0) {
 			$(".modal-body").html("게시글 " + parseInt(result) + "번이 등록되었습니다.");
+		} else {
+			return;
 		}
-		
+			
 		$("#myModal").modal("show");
-	}	
+	}
 	
-});
-</script>
+	// 신규 게시글 입력버튼 이벤트리스너
+	$("#regBtn").on("click", function() {
+		
+		self.location = "/board/register";
+	});
+
+</script>	
  <!-- // srcript -->
  
             
