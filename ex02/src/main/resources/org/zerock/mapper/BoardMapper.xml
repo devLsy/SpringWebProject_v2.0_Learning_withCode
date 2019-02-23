@@ -9,14 +9,14 @@
 <select id="getList" resultType="org.zerock.domain.BoardVO">
 
 <![CDATA[
-SELECT * FROM tbl_board WHERE bno > 0
+SELECT * FROM tbl_board WHERE bno > 0  
 ]]>
 </select>
 
 <!-- 게시글 작성(pk값 알수 없음) -->
 <insert id="insert">
 INSERT INTO tbl_board (bno, title, content, writer)
-VALUES(SEQ_BOARD.nextval , #{title}, #{content}, #{writer})
+VALUES(SEQ_BOARD.nextval , #{title}, #{content}, #{writer})	
 </insert>
 
 <!-- 게시글 작성(pk값 저장)-->

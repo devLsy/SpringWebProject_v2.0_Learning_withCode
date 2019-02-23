@@ -21,6 +21,7 @@ public class BoardController {
 
 	private BoardService service;
 	
+	// 전체 게시글 조회
 	@GetMapping("/list")
 	public void list(Model model) {
 		
@@ -28,6 +29,7 @@ public class BoardController {
 		model.addAttribute("list", service.getList());
 	}
 	
+	// 게시글 등록처리
 	@PostMapping("/register")
 	public String resister(BoardVO board, RedirectAttributes rttr) {
 		
@@ -39,6 +41,13 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
+	// 게시글 입력 폼 처리
+	@GetMapping("/register")
+	public void register() {
+		
+	}
+	
+	// 게시글 상세 조회
 	@GetMapping("/get")
 	public void get(@RequestParam("bno") Long bno, Model model) {
 		
@@ -46,6 +55,7 @@ public class BoardController {
 		model.addAttribute("board", service.get(bno));
 	}
 	
+	// 게시글 수정
 	@PostMapping("/modify")
 	public String modify(BoardVO board, RedirectAttributes rttr) {
 		
@@ -57,6 +67,7 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
+	// 게시글 삭제
 	@PostMapping("/remove")
 	public String remove(@RequestParam("bno") Long bno, RedirectAttributes rttr) {
 		
@@ -66,5 +77,9 @@ public class BoardController {
 		}
 		return "redirect:/board/list";
 	}	
+	
+	
+	
+	
 	
 }
