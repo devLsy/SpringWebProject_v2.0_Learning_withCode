@@ -7,7 +7,7 @@
 
 	<div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Board Read</h1>
+                    <h1 class="page-header">Board Modify</h1>
                 </div>
                 <!-- /.col-lg-12 -->
 	</div>
@@ -17,39 +17,35 @@
     	<div class="col-lg-12">
     		<div class="panel panel-default">
     		
-    		<div class="panel-heading">Board Read</div>
+    		<div class="panel-heading">Board Modify</div>
     			
     		<!-- /.panel-heading -->
       		<div class="panel-body">
+      				
+      			<form role="form" action="/board/modify" method="post">	
       				
       				<div class="form-group">
       					<label>Bno</label><input class="form-control" name="bno" value='<c:out value="${board.bno}"/>' readonly="readonly">
       				</div>
       				
       				<div class="form-group">
-      					<label>Title</label><input class="form-control" name="title" value='<c:out value="${board.title}"/>' readonly="readonly">
+      					<label>Title</label><input class="form-control" name="title" value='<c:out value="${board.title}"/>'>
       				</div>
       				
-      				<div class="form-group">
+      				<div class="form-group">		
       					<label>Text area</label>
-      					<textarea class="form-control" rows="3" name="content" value='<c:out value="${board.content}"/>' readonly="readonly"></textarea>
+      					<textarea class="form-control" rows="3" name="content" value='<c:out value="${board.content}"/>'></textarea>
       				</div>
       				
       				<div class="form-group">
       					<label>Writer</label><input class="form-control" name="writer" value='<c:out value="${board.writer}"/>' readonly="readonly">
       				</div>
 					
-					<button data-oper='modify' class="btn btn-default">
-					<a href="/board/modify?bno=<c:out value="${board.bno}" />">Modify</a>
-					</button>      				
-					<button data-oper='list' class="btn btn-info">
-					<a href="/board/list">List</a>
-					</button>      					
-					
-					<form id="operForm" action="/board/modify" method="get">
-						<input type="hidden" id="bno" name="bno" value='<c:out value="${board.bno}"/>'>
-					</form>
-      				
+					<button type="submit" data-oper='modify' class="btn btn-default">Modify</button>
+					<button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>      				
+					<button type="submit" data-oper='list' class="btn btn-info">List</button>
+				</form>      					
+      					
       		</div>		
       		<!-- /.panel-body -->		
     		
@@ -69,39 +65,34 @@
 <script>
 $(document).ready(function() {
 	
-	var operForm = $("#operForm");
+	var formObj = $("form");
+	/* console.log(formObj); */
 	
-	/* console.log(operForm); */
-	
-	$("button[data-oper='modify']").on("click", function(e) {
+	$("button").on("click", function(e) {
 		
-		operForm.attr("action", "/board/modify").submit();
+		e.preventDefault();
 		
+		var operation = $(this).data("oper");
+		
+		console.log(operation);
+		
+		if(operation === 'remove') {
+			formObj.attr("action", "/board/remove");
+		} else if(operation === 'list') {
+			// move to listPage
+			formObj.attr("action", "/board/list").attr("method", "get")
+			formObj.empty();
+		}
+		
+ 		formObj.submit();		
+			
 	});
-	
-	$("button[data-oper='list']").on("click", function(e) {
-		
-		operForm.find("#bno").remove();
-		operForm.attr("action", "/board/list");
-		operForm.submit();
-		
-	});
-	
-		
-	
-	
-	
-	
-	
-	
-	
-	
+
 });
+
 
 </script>
 <!-- // srcript -->
-   
-   
    
  <%@include file="../includes/footer.jsp" %>	
 

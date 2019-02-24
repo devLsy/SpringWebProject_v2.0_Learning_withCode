@@ -13,7 +13,7 @@
             </div>
             <!-- /.row -->
             
-            <div class="row">
+            <div class="row">	
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">Board List Page
@@ -39,14 +39,14 @@
 										<td><a href='/board/get?bno=<c:out value="${board.bno}"/>'><c:out value="${board.title}"/></a></td>											
 										<td><c:out value="${board.writer}"/></td>											
 										<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate}" /></td>											
-										<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updatedate}" /></td>										
+										<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updateDate}" /></td>										
 									</tr>
                                 </c:forEach>	
                                 	
-                            </table>	
-                            <!-- //table -->
-                            
-      <!-- Modtal 추가 -->
+                            </table>			
+                            <!-- //table -->	
+                            	
+      <!-- Modtal 추가 -->	
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -86,15 +86,15 @@ $(document).ready(function() {
 	
 	/* modal 처리 */
 	checkModal(result);
-
-});
+	
+	history.replaceState({}, null, null);	
 
 	// modal 처리 function(BoardController에서 보내는 게시글 등록 시 게시글 번호를 받아서 처리)
 	function checkModal(result) {
 		
-		if(result == ' ') {
+		if(result === ' ' || history.state) {
 			return;
-		}
+		} 
 		
 		if(parseInt(result) > 0) {
 			$(".modal-body").html("게시글 " + parseInt(result) + "번이 등록되었습니다.");
@@ -111,6 +111,8 @@ $(document).ready(function() {
 		self.location = "/board/register";
 	});
 
+});	
+	
 </script>	
  <!-- // srcript -->
  

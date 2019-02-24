@@ -10,8 +10,8 @@
 
 <![CDATA[
 SELECT * FROM tbl_board WHERE bno > 0  
-]]>
-</select>
+]]>	
+</select>	
 
 <!-- 게시글 작성(pk값 알수 없음) -->
 <insert id="insert">
