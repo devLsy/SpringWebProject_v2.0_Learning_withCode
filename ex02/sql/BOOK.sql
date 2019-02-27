@@ -13,6 +13,6 @@ FROM
         rownum rn, bno, title, content
     FROM 
         tbl_board
-    WHERE rownum <= 20
+    WHERE rownum <= 10
     )
 WHERE rn > 10;

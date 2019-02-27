@@ -32,55 +32,57 @@ public class BoardControllerTests {
 		this.mocMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
 	}
 	
-	/*@Test
-	public void testList() throws Exception {
+	@Test
+	public void testListPaging() throws Exception {
 		
-		log.info(mocMvc.perform(MockMvcRequestBuilders.get("/board/list"))
+		log.info(mocMvc.perform(MockMvcRequestBuilders.get("/board/list")
+				.param("pageNum", "2")
+				.param("amount", "10"))
 				.andReturn()
 				.getModelAndView()
 				.getModelMap());	
-	}*/
-	
-	@Test
-	public void testRegister() throws Exception {
-		
-		String resultPage = mocMvc.perform(MockMvcRequestBuilders.post("/board/register")
-								.param("title", "테스트 새글 제목@")
-								.param("content", "테스트 새글 내용@")
-								.param("writer", "user22")).andReturn().getModelAndView().getViewName();
-									
-				log.info(" resultPage: " + resultPage);
 	}
 	
-	/*@Test
-	public void testGet() throws Exception {
-		
-		log.info(mocMvc.perform(MockMvcRequestBuilders.get("/board/get")
-					.param("bno", "2")).andReturn().getModelAndView().getModelMap());
-	}
+//	@Test
+//	public void testRegister() throws Exception {
+//		
+//		String resultPage = mocMvc.perform(MockMvcRequestBuilders.post("/board/register")
+//								.param("title", "테스트 새글 제목@")
+//								.param("content", "테스트 새글 내용@")
+//								.param("writer", "user22")).andReturn().getModelAndView().getViewName();
+//									
+//				log.info(" resultPage: " + resultPage);
+//	}	
 	
-	@Test
-	public void testModify() throws Exception {
-		
-		String resultPage = mocMvc.perform(MockMvcRequestBuilders.post("/board/modify")
-													.param("bno", "1")
-													.param("title", "수정된 테스트 새글 제목")
-													.param("content", "수정된 테스트 새글 내용")
-													.param("writer", "user00"))
-										.andReturn().getModelAndView().getViewName();
-		
-				log.info("resultPage: " + resultPage);
-	}
-	
-	@Test
-	public void testRemove() throws Exception {
-		
-		String resultPage = mocMvc.perform(MockMvcRequestBuilders.post("/board/remove")
-															.param("bno", "23"))
-													.andReturn().getModelAndView().getViewName();
-		
-		log.info("testRemove()의 resultPage: " + resultPage); 
-	}*/
+//	@Test
+//	public void testGet() throws Exception {
+//		
+//		log.info(mocMvc.perform(MockMvcRequestBuilders.get("/board/get")
+//					.param("bno", "2")).andReturn().getModelAndView().getModelMap());
+//	}
+//	
+//	@Test
+//	public void testModify() throws Exception {
+//		
+//		String resultPage = mocMvc.perform(MockMvcRequestBuilders.post("/board/modify")
+//													.param("bno", "1")
+//													.param("title", "수정된 테스트 새글 제목")
+//													.param("content", "수정된 테스트 새글 내용")
+//													.param("writer", "user00"))
+//										.andReturn().getModelAndView().getViewName();
+//		
+//				log.info("resultPage: " + resultPage);
+//	}
+//	
+//	@Test
+//	public void testRemove() throws Exception {
+//		
+//		String resultPage = mocMvc.perform(MockMvcRequestBuilders.post("/board/remove")
+//															.param("bno", "23"))
+//													.andReturn().getModelAndView().getViewName();
+//		
+//		log.info("testRemove()의 resultPage: " + resultPage); 
+//	}
 	
 	
 }

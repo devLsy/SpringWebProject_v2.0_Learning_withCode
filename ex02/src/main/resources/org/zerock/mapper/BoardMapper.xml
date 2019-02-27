@@ -16,18 +16,18 @@ SELECT * FROM tbl_board WHERE bno > 0
 
 <select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
 <![CDATA[
-SELECT 
-	bno, title, content, writer, regdate, updateDate
-FROM 
-	(
-	SELECT /*+ INDEX_DESC(tbl_board pk_board)*/
-			rownum rn, bno, title, content, writer, regdate, updateDate
-	FROM 
-		tbl_board
-	WHERE rownum <= 20
-)
-WHERE rn > 10
-]]>
+  SELECT  
+    bno, title, content, writer, regdate, updatedate
+  FROM  
+      (
+      SELECT  /*+INDEX_DESC(tbl_board pk_board) */
+        rownum rn, bno, title, content, writer, regdate, updatedate 
+      FROM  
+        tbl_board
+      WHERE  rownum <= #{pageNum} * #{amount}
+     )
+  WHERE  rn > (#{pageNum} -1) * #{amount}
+  ]]>
 </select>
 
 
