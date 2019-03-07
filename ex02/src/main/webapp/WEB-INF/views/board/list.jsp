@@ -43,7 +43,8 @@
 				<c:forEach items="${list}" var="board">	
 						<tr>	
 							<td><c:out value="${board.bno}"/></td>						
-							<td><c:out value="${board.title}"/></td>						
+							<td><a href='/board/get?bno=<c:out value="${board.bno}"/>'>
+							<c:out value="${board.title}"/></a></td>						
 							<td><c:out value="${board.content}"/></td>						
 							<td><c:out value="${board.writer}"/></td>							
 							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate}"/></td>						
@@ -80,7 +81,7 @@
 	
 	
 	
-	<script>
+<script>
 		$(document).ready(function() {
 			var result = '<c:out value="${result}"/>';	
 			console.log("result: " + result);
@@ -113,7 +114,7 @@
 		// end of $(document).ready(function()
 	
 	
-	</script>
+</script>
 </body>
 </html>            
 <%@include file="../includes/footer.jsp" %>    		

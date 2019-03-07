@@ -54,7 +54,7 @@
       		<!-- /.panel-body -->		
     		
     			
-    		</div>
+    		</div>	
     		<!-- /.panel panel-default -->
     		
     		
