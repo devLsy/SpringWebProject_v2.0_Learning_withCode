@@ -27,7 +27,7 @@
       					<label>Title</label><input class="form-control" name="title">
       				</div>
       				
-      				<div class="form-group">
+      				<div class="form-group">		
       					<label>Text area</label>
       					<textarea class="form-control" rows="3" name="content"></textarea>
       				</div>

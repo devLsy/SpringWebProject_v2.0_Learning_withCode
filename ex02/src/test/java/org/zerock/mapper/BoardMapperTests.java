@@ -21,7 +21,7 @@ public class BoardMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private BoardMapper mapper;
 	
-//	// 전체 게시글 조회 테스트
+	// 전체 게시글 조회 테스트
 //	@Test
 //	public void testGetList() {
 //		mapper.getList().forEach(board -> log.info(board));
