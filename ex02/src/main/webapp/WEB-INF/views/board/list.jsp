@@ -142,23 +142,23 @@
 				
 				$("#myModal").modal("show");
 			}
-			
+				
 			// 등록 버튼 이벤트 리스너
 			$("#regBtn").on("click", function() {
 				self.location = "/board/register";	
 			});		
 			
-			var actionForm = $("actionForm");
+			var actionForm = $("#actionForm");
 			
 			$(".paginate_button a").on("click", function(e) {
 				e.preventDefault();
-				
+					
 				console.log('click');
 				
 				actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 				actionForm.submit();
 			});
-					
+						
 			
 				
 				
