@@ -38,6 +38,7 @@
       				
       				<button type="submit" class="btn btn-default">Submit Button</button>
       				<button type="reset" class="btn btn-default">Reset Button</button>
+      				<button type="button" id="listBtn" data-oper='list' class="btn btn-info">List</button>
       			</form>
       			
       		</div>
@@ -52,7 +53,31 @@
     	<!-- /.col-lg-12-->
     
     </div>        
-    <!-- /.row -->        
+    <!-- /.row -->
+    <script>
+    	$(document).ready(function() {
+    		
+    		$("#listBtn").click(function(e) {
+	    		e.preventDefault();
+    			
+	    		self.location = "/board/list";
+    		});
+    			
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    	});
+    </script>        
    
    
    

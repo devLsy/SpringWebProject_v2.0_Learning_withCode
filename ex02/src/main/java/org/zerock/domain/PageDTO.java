@@ -21,17 +21,21 @@ public class PageDTO {
 		this.total = total;
 		// 끝 페이지
 		this.endPage = (int) (Math.ceil(cri.getPageNum() / 10.0)) * 10;
+		System.out.println("endPage: " + endPage);
 		// 시작 페이지
 		this.startPage = this.endPage - 9;
+		System.out.println("startPage: " + startPage);
 		// 실제 끝 페이지
 		int realEnd = (int) Math.ceil((total * 1.0) / cri.getAmount()); 
-		
+		System.out.println("realEndPage: " + realEnd);
 		if(realEnd < this.endPage) {
 			this.endPage = realEnd;
 		}	
 		
 		this.prev = this.startPage > 1;
+		System.out.println("prev: " + prev);
 		this.next = this.endPage < realEnd;
+		System.out.println("next: " + next);
 	}
 	
 	

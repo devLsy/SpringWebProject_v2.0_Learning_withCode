@@ -13,7 +13,6 @@
 </head>	
 <body>
 			<div class="panel-heading">
-				Board List Page
 				<button id='regBtn' type="button" class="btn btn-xs pull-right">Register New Board</button>
 			</div>
 			<!-- /.panel-heading -->
@@ -21,7 +20,7 @@
 			
 			
 	<table class="table table-striped table-bordered table-hover">
-			<caption>게시판 리스트</caption>
+			<caption>boardList</caption>
 			<colgroup>
 				<col width="100">
 				<col>	
@@ -79,6 +78,46 @@
 			<!-- /.modal -->
 	
 	
+	<!-- pagination -->
+	<div class='pull-right'>
+		<ul class="pagination">
+			<c:if test="${pageMaker.prev}">
+				<li class="paginate_button previous">
+					<a href="${pageMaker.startPage -1}">Previous</a></li>
+			</c:if>	
+			
+			<c:forEach var="num" begin="${pageMaker.startPage}"
+					end="${pageMaker.endPage}">	
+				<li class="paginate_button  ${pageMaker.cri.pageNum == num ? "active":""} ">
+					<a href="${num}">${num}</a></li>			
+			</c:forEach>
+			
+			<c:if test="${pageMaker.next}">
+				<li class="paginate_button next">
+					<a href="">Next</a></li>	
+			</c:if>
+					
+		
+		
+		
+		
+		
+		
+		
+		
+		</ul>
+	</div>
+	<!-- end of pagination add -->
+	
+	
+	<form id="actionForm" action="/board/list" method="get">
+		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+	</form>
+	
+	
+	
+	
 	
 	
 <script>
@@ -88,13 +127,15 @@
 					
 			checkModal(result);
 			
+			history.replaceState({}, null, null);
+			
 			// 모달관련 function
 			function checkModal(result) {
 				
-				if(result == "") {
+				if(result == "" || history.state) {
 					return;
 				}	
-				
+					
 				if(parseInt(result) > 0) {
 					$(".modal-body").html("게시글 " + parseInt(result) + "번이 등록되었습니다.");
 				}
@@ -107,9 +148,20 @@
 				self.location = "/board/register";	
 			});		
 			
+			var actionForm = $("actionForm");
+			
+			$(".paginate_button a").on("click", function(e) {
+				e.preventDefault();
+				
+				console.log('click');
+				
+				actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+				actionForm.submit();
+			});
+					
 			
 				
-			
+				
 		}); 
 		// end of $(document).ready(function()
 	
