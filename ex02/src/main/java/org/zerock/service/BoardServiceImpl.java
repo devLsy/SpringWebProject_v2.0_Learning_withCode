@@ -63,6 +63,7 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	// 전체 게시글 수 조회
 	public int getTotal(Criteria cri) {
+		log.info("get total count..");
 		return mapper.getTotalCount(cri);
 	}
 
