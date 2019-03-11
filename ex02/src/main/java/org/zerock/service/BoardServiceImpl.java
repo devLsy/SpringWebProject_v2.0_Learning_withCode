@@ -21,6 +21,7 @@ public class BoardServiceImpl implements BoardService{
 	private BoardMapper mapper;
 
 	@Override
+	// 글 등록
 	public void register(BoardVO board) {
 		
 		log.info("resister...." + board);
@@ -29,6 +30,7 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
+	// 글 조회
 	public BoardVO get(Long bno) {
 		
 		log.info("get..." + bno);
@@ -36,6 +38,7 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
+	// 글 수정
 	public boolean modify(BoardVO board) {
 		
 		log.info("modify..." + board);
@@ -43,6 +46,7 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
+	// 글 삭제
 	public boolean remove(Long bno) {
 		
 		log.info("remove..." + bno);
@@ -50,9 +54,16 @@ public class BoardServiceImpl implements BoardService{
 	}
 	
 	@Override
+	// 전체글 조회
 	public List<BoardVO> getList(Criteria cri) {
 		log.info("getList with criteria: " + cri);
 		return mapper.getListWithPaging(cri);
+	}
+
+	@Override
+	// 전체 게시글 수 조회
+	public int getTotal(Criteria cri) {
+		return mapper.getTotalCount(cri);
 	}
 
 

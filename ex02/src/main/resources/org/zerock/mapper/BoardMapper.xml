@@ -29,6 +29,10 @@ SELECT * FROM tbl_board WHERE bno > 0
   WHERE  rn > (#{pageNum} -1) * #{amount}	
   ]]>
 </select>
+	
+<select id="getTotalCount" resultType="int">
+	SELECT COUNT(*) FROM tbl_board WHERE bno > 0
+</select>
 
 
 
