@@ -27,7 +27,7 @@ public class PageDTO {
 		System.out.println("startPage: " + startPage);
 		// 실제 끝 페이지
 		int realEnd = (int) Math.ceil((total * 1.0) / cri.getAmount()); 
-		System.out.println("realEndPage: " + realEnd);
+		System.out.println("realEnd: " + realEnd);
 		if(realEnd < this.endPage) {
 			this.endPage = realEnd;
 		}	

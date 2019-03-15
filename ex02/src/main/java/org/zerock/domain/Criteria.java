@@ -9,8 +9,12 @@ import lombok.ToString;
 @ToString
 public class Criteria {
 
-	private int pageNum;
-	private int amount;
+	private int pageNum;		// 페이지 번호
+	private int amount;			// 한페이지에 보여줄 게시글 수
+	
+	private String type;
+	private String keyWord;
+	
 	
 	public Criteria() {
 		this(1, 10);
@@ -21,4 +25,9 @@ public class Criteria {
 		this.amount = amount;
 		System.out.println("한페이지에 보여줄 게시글 수: " + amount);
 	}
+	
+	public String[] getTypeArr() {
+		System.out.println("cri.type: " + type);
+	    return type == null? new String[] {}: type.split("");
+	  }
 }	

@@ -53,6 +53,29 @@
 			</tbody>			
 	</table>
 	
+	<div class="row">
+		<div class="col-lg-12">
+			
+			<form id='searchForm' action="/board/list" method="get">
+				<select name='type' id="selectBox">
+					<option value="" <c:out value="${pageMaker.cri.type == null ? 'selected' : ''}" />>선택 해주세요.</option>
+					<option value="T" <c:out value="${pageMaker.cri.type eq 'T' ? 'selected' : ''}" />>제목</option>
+					<option value="C" <c:out value="${pageMaker.cri.type eq 'C' ? 'selected' : ''}" />>내용</option>
+					<option value="W" <c:out value="${pageMaker.cri.type eq 'W' ? 'selected' : ''}" />>작성자</option>
+					<option value="TC" <c:out value="${pageMaker.cri.type eq 'TC' ? 'selected' : ''}" />>제목 or 내용</option>
+					<option value="TW" <c:out value="${pageMaker.cri.type eq 'TW' ? 'selected' : ''}" />>제목 or 작성자</option>
+					<option value="TWC" <c:out value="${pageMaker.cri.type eq 'TWC'?'selected':''}"/>>제목 or 내용 or 작성자</option>
+				</select>
+				<input id="keyWord" type="text" name='keyWord' value='<c:out value='${pageMaker.cri.keyWord}' />'/>	
+				<input type="hidden" name='pageNum' value="${pageMaker.cri.pageNum}"/>	
+				<input type="hidden" name='amount' value="${pageMaker.cri.amount}"/>	
+				<button class="btn btn-default">Search</button>
+			</form>
+		</div>	
+		<!-- / .col-lg-12-->			
+	</div>
+	<!--  / .row -->	
+	
 	<!-- Modal  추가 -->
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel" aria-hidden="true">
@@ -113,10 +136,12 @@
 	<form id="actionForm" action="/board/list" method="get">
 		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+		<input type="hidden" name="type" value="<c:out value='${pageMaker.cri.type}' />">
+		<input type="hidden" name="keyWord" value="<c:out value='${pageMaker.cri.keyWord}' />">
 	</form>
 	
 	
-	
+		
 	
 	
 	
@@ -168,7 +193,27 @@
 				actionForm.attr("action", "/board/get");
 				actionForm.submit();
 			});	
-						
+			
+			var searchForm = $("#searchForm");
+			
+			$("#searchForm button").on("click", function(e) {
+				
+				if(!searchForm.find("option:selected").val()) {
+					alert("검색종류를 선택 하세요.");
+					return false;
+				}
+				
+				if(!searchForm.find("input[name='keyWord']").val()) {
+					alert("키워드를 입력 하세요.");
+					return false;
+				}
+				
+				searchForm.find("input[name='pageNum']").val("1");
+				e.preventDefault();
+				
+				
+				searchForm.submit();	
+			});
 			
 				
 					
