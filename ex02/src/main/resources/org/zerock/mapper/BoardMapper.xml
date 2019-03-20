@@ -23,7 +23,7 @@
 				</choose>
 			</trim>
 		</foreach>
-	</trim>
+	</trim>	
 </sql>
 
 <!-- 전체 글 조회 -->
