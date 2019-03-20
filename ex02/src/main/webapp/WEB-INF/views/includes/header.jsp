@@ -59,7 +59,7 @@ input#keyWord {height:30px;}
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Spring5_board</a>
+                <a class="navbar-brand" href="index.html">Spring5_board by devLsy</a>
             </div>
             <!-- /.navbar-header -->
 

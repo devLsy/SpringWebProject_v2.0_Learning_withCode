@@ -25,6 +25,8 @@
       			<form role="form" action="/board/modify" method="post">	
       				<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"/>'>
       				<input type="hidden" name="amount" value='<c:out value="${cri.amount}"/>'>
+      				<input type="hidden" name="keyWord" value='<c:out value="${cri.keyWord}"/>'>
+      				<input type="hidden" name="type" value='<c:out value="${cri.type}"/>'>
       				
       				<div class="form-group">
       					<label>Bno</label><input class="form-control" name="bno" value='<c:out value="${board.bno}"/>' readonly="readonly">
@@ -87,11 +89,15 @@ $(document).ready(function() {
 			
 			var pageNumTag = $("input[name='pageNum']").clone();
 			var amountTag = $("input[name='amount']").clone();	
+			var keyWordTag = $("input[name='keyWord']").clone();	
+			var typeTag = $("input[name='type']").clone();	
 			
 			formObj.empty();
 			formObj.append(pageNumTag);
 			formObj.append(amountTag);
-			
+			form.Obj.append(typeTag);
+			form.Obj.append(keyWordTag);
+				
 		}
 		/* console.log("pageNumTag: " + pageNumTag + "\n" + "amountTag: " + amountTag); */
  		formObj.submit();		

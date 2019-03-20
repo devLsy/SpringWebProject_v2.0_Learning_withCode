@@ -74,10 +74,7 @@ public class BoardController {
 			rttr.addFlashAttribute("result", "success");
 		}
 		
-		rttr.addAttribute("pageNum", cri.getPageNum());
-		rttr.addAttribute("amount", cri.getAmount());
-		
-		return "redirect:/board/list";
+		return "redirect:/board/list" + cri.getListLink();	
 	}
 		
 	// 게시글 삭제	
@@ -88,10 +85,8 @@ public class BoardController {
 		if(service.remove(bno)) {
 			rttr.addFlashAttribute("result", "success");	
 		}
-		rttr.addAttribute("pageNum", cri.getPageNum());
-		rttr.addAttribute("amount", cri.getAmount());
 		
-		return "redirect:/board/list";
+		return "redirect:/board/list" + cri.getListLink();
 	}	
 	
 	

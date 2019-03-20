@@ -1,12 +1,16 @@
 package org.zerock.domain;
 
+import org.springframework.web.util.UriComponentsBuilder;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.extern.log4j.Log4j;
 
 @Getter
 @Setter
 @ToString
+@Log4j
 public class Criteria {
 
 	private int pageNum;		// 페이지 번호
@@ -23,11 +27,25 @@ public class Criteria {
 	public Criteria(int pageNum, int amount) {
 		this.pageNum = pageNum;
 		this.amount = amount;
-		System.out.println("한페이지에 보여줄 게시글 수: " + amount);
+		log.info("한페이지에 보여줄 게시글 수: " + amount);
 	}
 	
 	public String[] getTypeArr() {
-		System.out.println("cri.type: " + type);
+		log.info("cri.type: " + type);
 	    return type == null? new String[] {}: type.split("");
-	  }
+	}
+	
+	// spring의 UriComponentsBuilder 이용해서 parameter들을 연결해 url 형태로 가공
+	public String getListLink() {
+		
+		UriComponentsBuilder builder = UriComponentsBuilder.fromPath("")
+				.queryParam("pageNum", this.pageNum)
+				.queryParam("amount", this.getAmount())
+				.queryParam("type", this.getType())
+				.queryParam("keyWord", this.getKeyWord());
+		
+		log.info("uriComponentsBuilder 이용해 만든 url: " + builder.toUriString());
+		return builder.toUriString();
+		
+	}
 }	
