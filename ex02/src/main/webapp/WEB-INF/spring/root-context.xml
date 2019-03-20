@@ -15,7 +15,7 @@
 		<property name="driverClassName"
 			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="jdbcUrl"
-			value="jdbc:log4jdbc:oracle:thin:@localhost:1521:ORCL"></property>
+			value="jdbc:log4jdbc:oracle:thin:@192.168.0.8:1521:ORCL"></property>
 
 		<property name="username" value="book_ex"></property>
 		<property name="password" value="1234"></property>
