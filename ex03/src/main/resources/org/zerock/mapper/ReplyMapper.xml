@@ -22,8 +22,14 @@
 		DELETE FROM tbl_reply 
 			WHERE rno = #{rno} 
 	</delete>
-
-
+	
+	<!-- 수정 -->
+	<update id="update">
+		UPDATE tbl_reply
+			SET reply = #{reply}, updatedate = sysdate 
+		WHERE rno = #{rno}
+	</update>
+	
 
 
 
