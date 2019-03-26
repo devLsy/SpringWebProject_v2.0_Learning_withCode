@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 답변처리를 위한 mapper.xml -->
+<mapper namespace="org.zerock.mapper.ReplyMapper">
+	<!-- 답변 달기 -->
+	<insert id="insert">
+		INSERT INTO tbl_reply (rno, bno, reply, replyer)
+			VALUES(SEQ_REPLY.nextval, ${bno}, #{reply}, #{replyer})
+	</insert>
+	
+	<!-- 조회 -->
+	<select id="read" resultType="org.zerock.domain.ReplyVO">
+		SELECT * FROM tbl_reply
+			WHERE rno = #{rno}
+	</select>
+	
+	<!-- 삭제 -->
+	<delete id="delete">
+		DELETE FROM tbl_reply 
+			WHERE rno = #{rno} 
+	</delete>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
