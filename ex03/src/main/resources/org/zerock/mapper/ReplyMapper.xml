@@ -24,11 +24,19 @@
 	</delete>
 	
 	<!-- 수정 -->
-	<update id="update">
+	<update id="update">	
 		UPDATE tbl_reply
 			SET reply = #{reply}, updatedate = sysdate 
 		WHERE rno = #{rno}
 	</update>
+	
+	<!-- 댓글 리스트 조회  -->
+	<select id="getListWithPaging" resultType="org.zerock.domain.ReplyVO">
+		SELECT rno, bno, reply, replyer, replyDate, updatedate
+			FROM tbl_reply
+		WHERE bno = #{bno}
+			ORDER BY rno asc
+	</select>
 	
 
 
