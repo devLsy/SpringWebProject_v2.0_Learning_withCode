@@ -32,7 +32,7 @@
 				<tr>	
 					<th scope="col">글번호</th>
 					<th scope="col">제목</th>
-					<th scope="col">내용</th>	
+					<!-- <th scope="col">내용</th> -->	
 					<th scope="col">작성자</th>			
 					<th scope="col">작성일</th>			
 					<th scope="col">수정일</th>			
@@ -44,7 +44,7 @@
 							<td><c:out value="${board.bno}"/></td>						
 							<td><a class="move" href='<c:out value="${board.bno}"/>'>
 							<c:out value="${board.title}"/></a></td>						
-							<td><c:out value="${board.content}"/></td>						
+							<%-- <td><c:out value="${board.content}"/></td> --%>						
 							<td><c:out value="${board.writer}"/></td>							
 							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate}"/></td>						
 							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updateDate}"/></td>						
@@ -149,7 +149,7 @@
 		$(document).ready(function() {
 			var result = '<c:out value="${result}"/>';	
 			console.log("result: " + result);
-					
+			
 			checkModal(result);
 			
 			history.replaceState({}, null, null);

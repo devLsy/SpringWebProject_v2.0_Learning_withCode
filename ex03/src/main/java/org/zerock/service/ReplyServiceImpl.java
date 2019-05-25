@@ -46,7 +46,7 @@ public class ReplyServiceImpl implements ReplyService {
 		return replyMapper.update(replyVO);
 	}
 	
-	/*답변 목록 조회*/
+	/*답변 목록 조회*/	
 	@Override
 	public List<ReplyVO> getList(Criteria cri, Long bno) {
 		log.info("get Reply List of a Spring5_Board: " + bno);

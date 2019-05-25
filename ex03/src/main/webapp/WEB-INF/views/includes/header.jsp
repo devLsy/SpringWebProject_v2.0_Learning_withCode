@@ -30,6 +30,7 @@
 
     <!-- Custom Fonts -->
     <link href="/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/resources/css/etc.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -59,7 +60,7 @@ input#keyWord {height:30px;}
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Spring5_board by devLsy</a>
+                <a class="navbar-brand" href="/board/list">Spring5_board by devLsy</a>
             </div>
             <!-- /.navbar-header -->
 

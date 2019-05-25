@@ -8,10 +8,10 @@
 	<!-- 답변 달기 -->
 	<insert id="insert">
 		INSERT INTO tbl_reply (rno, bno, reply, replyer)
-			VALUES(SEQ_REPLY.nextval, ${bno}, #{reply}, #{replyer})
+			VALUES(SEQ_REPLY.nextval, #{bno}, #{reply}, #{replyer})
 	</insert>
 	
-	<!-- 조회 -->
+	<!-- 조회 -->	
 	<select id="read" resultType="org.zerock.domain.ReplyVO">
 		SELECT * FROM tbl_reply
 			WHERE rno = #{rno}
@@ -26,7 +26,7 @@
 	<!-- 수정 -->
 	<update id="update">	
 		UPDATE tbl_reply
-			SET reply = #{reply}, updatedate = sysdate 
+			SET reply = #{reply}, replyer = #{replyer}, updatedate = sysdate 
 		WHERE rno = #{rno}
 	</update>
 	
