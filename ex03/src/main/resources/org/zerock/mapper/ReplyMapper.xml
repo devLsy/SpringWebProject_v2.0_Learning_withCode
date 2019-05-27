@@ -30,15 +30,29 @@
 		WHERE rno = #{rno}
 	</update>
 	
-	<!-- 댓글 리스트 조회  -->
+	<!-- 전체 댓글 리스트 조회(페이징)  -->
 	<select id="getListWithPaging" resultType="org.zerock.domain.ReplyVO">
-		SELECT rno, bno, reply, replyer, replyDate, updatedate
-			FROM tbl_reply
-		WHERE bno = #{bno}
-			ORDER BY rno asc
+<![CDATA[
+		SELECT rno, bno, reply, replyer, replydate, updatedate
+	FROM
+    	(
+        SELECT /*+INDEX(tbl_reply idx_reply) */
+            rownum rn, bno, rno, reply, replyer, replyDate, updatedate
+        FROM tbl_reply
+            WHERE bno = ${bno}
+            AND rno > 0 
+            AND rownum <= #{cri.pageNum} * #{cri.amount}
+    	) 
+    	WHERE rn > (#{cri.pageNum} -1) * #{cri.amount}       
+]]>
 	</select>
 	
-
+	<!-- 전체 댓글 갯수 조회 -->	
+	<select id="getCountByBno" resultType="int">
+		<![CDATA[
+			SELECT count(rno) FROM tbl_reply WHERE bno = #{bno}		
+		]]>
+	</select>
 
 
 

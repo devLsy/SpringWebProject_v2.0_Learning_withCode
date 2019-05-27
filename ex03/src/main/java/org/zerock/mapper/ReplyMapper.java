@@ -16,5 +16,7 @@ public interface ReplyMapper {
 	
 	public List<ReplyVO> getListWithPaging(@Param("cri") Criteria cri, @Param("bno") Long bno); 
 	
+	/*전체 댓글 숫자 조회*/
+	public int getCountByBno(Long bno);
 }
 		

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zerock.domain.Criteria;
+import org.zerock.domain.ReplyPageDTO;
 import org.zerock.domain.ReplyVO;
 import org.zerock.mapper.ReplyMapper;
 
@@ -51,6 +52,12 @@ public class ReplyServiceImpl implements ReplyService {
 	public List<ReplyVO> getList(Criteria cri, Long bno) {
 		log.info("get Reply List of a Spring5_Board: " + bno);
 		return replyMapper.getListWithPaging(cri, bno);
+	}
+	
+	/*댓글 전체 갯수 조회*/
+	@Override
+	public ReplyPageDTO getListPage(Criteria cri, Long bno) {
+		return new ReplyPageDTO(replyMapper.getCountByBno(bno), replyMapper.getListWithPaging(cri, bno));
 	}
 
 }

@@ -273,11 +273,12 @@ input#keyWord {height:30px;}
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
-
+	
             
             <!-- /.navbar-static-side -->
         </nav>
 
         <div id="page-wrapper">
         
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+        <script src="/resources/vendor/jquery/jquery-3.4.1.min.js"></script>

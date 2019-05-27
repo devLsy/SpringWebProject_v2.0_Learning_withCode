@@ -66,7 +66,7 @@
     				<i class="fa fa-comments fa-fw"></i> Reply
     				<button id="addReplyBtn" class="btn btn-primary btn-xs pull-right">New Reply</button>
     			</div>
-    			
+    				
     			
     			
     			
@@ -75,21 +75,21 @@
 				<div class="panel-body">
 					<ul class="chat">
 						<!-- start reply -->
-						<li class="left clearfix">		
-							<div>
-								<!-- <div class="header">
-									<strong class="primary-font">user00</strong>
-									<smal class="pull-right text-muted">2018-05-12 17:00 </smal> -->
-								</div>
-								<!-- <p>Good job!</p> -->
-							</div>						
-						</li>
+						<li class="left clearfix"></li>
 						<!-- reply(e) -->	
 					</ul>
 					<!--  ul(e) -->
 				</div>
 				<!-- ./panel .chat-panel -->
+				
+				<div class="panel-footer">
+					
+					
+					
+				</div>
+				
     		</div>
+    		<!--  ./panel panel-default -->
     	</div>
     	<!-- /.col-lg-12-->
     </div>        
@@ -107,7 +107,7 @@
             <div class="modal-body">
             	<div class="form-group">
             		<label>Reply</label>
-            		<input class="form-control" name="reply" value="New Reply!!!!">
+            		<input class="form-control" name="reply" value="newReply!!!">
             	</div>
             	<div class="form-group">
             		<label>Replyer</label>
@@ -163,7 +163,19 @@ $(document).ready(function() {
 	
 	/* 전체 댓글 목록조회해서 동적으로 생성 */
 	function showList(page) {
-		replyService.getList({bno:bnoValue, page: page || 1}, function(list) {
+			console.log("page: " + page);
+			
+			replyService.getList({bno:bnoValue, page: page || 1}, function(list) {
+			
+			console.log("replyCnt: " + replyCnt);	
+			console.log("list: " + list);	
+			console.log(list);	
+			
+			if(page == -1) {
+				pageNum = Math.ceil(replyCnt / 10.0);
+				showList(pageNum);
+				return;
+			}
 			
 			var str = "";
 			if(list == null || list.length == 0) {
@@ -171,7 +183,7 @@ $(document).ready(function() {
 				
 				return;
 			}	
-			
+				
 			for(var i = 0, len = list.length || 0; i < len; i++) {
 				str += "<li class='left clearfix' data-rno=' "+list[i].rno+" '> ";
 				/* 댓글 작성자 */
@@ -185,10 +197,65 @@ $(document).ready(function() {
 				
 			/* console.log("str: " + str); */
 			replyUL.html(str);
-		})	;	
+			showReplyPage(replyCnt);
+		});	
 		/* end function */
 	} 	
 	/* end showList() */
+	
+	
+	var pageNum = 1;
+	var replyPageFooter = $(".panel-footer");
+	
+	/* 댓글 페이징 표시 */
+	function showReplyPage(relyCnt) {
+		
+		var endNum = Math.ceil(pageNum / 10.0);
+		console.log("endNum: " + endNum);
+		var startNum = endNum - 9;
+		console.log("startNum: " + startNum);
+		
+		var prev = startNum != 1;
+		var next = false;
+		
+		if(endNum * 10 >= replyCnt) {
+			endNum = Math.ceil(replyCnt / 10.0);
+		}
+		
+		if(endNum * 10 < replyCnt) {
+			next = true;
+		}
+		
+		var str = "<ul class='pagination pull-right'>";
+		
+		if(prev) {
+			str += "<li class='page-item'><a class='page-link' href='  " + (startNum -1) + " '>Previous</a></li>";
+		}
+
+		for(var i = startNum; i <= endNum; i++) {
+			
+			var active = pageNum == 1 ? "active" : "";
+			
+			str+= "<li class='page-item "+active+" '><a class='page-link' href='"+i+"'>"+i+"</a></li>";
+		}		
+		
+		if(next) {
+			str+= "<li class='page-item'><a class='page-link' href='"+(endNum + 1)+"'>Next</a></li>";	
+		}
+	
+		str += "</ul><div>";
+		console.log("str: " + str);
+		
+		replyPageFooter.html(str);
+}
+	
+	
+	
+	
+	
+	
+	
+	
 			
 	var modal = $(".modal");
     var modalInputReply = modal.find("input[name='reply']");
@@ -233,7 +300,8 @@ $(document).ready(function() {
 			modal.modal("hide");
 			
 			/* 전체 댓글 조회 갱신 */
-			showList(1);
+			/* showList(1); */
+			showList(-1);
 			
 		});
 	});
@@ -242,7 +310,7 @@ $(document).ready(function() {
 	$(".chat").on("click", "li", function(e){
 	      
 	      var rno = $(this).data("rno");
-	      console.log(rno);
+	      /* console.log(rno); */
 	      replyService.get(rno, function(reply){
 	      
 	        modalInputReply.val(reply.reply);
@@ -264,7 +332,7 @@ $(document).ready(function() {
 	modalModBtn.on("click", function(e) {
 		
 		var reply = {rno: modal.data("rno"), reply: modalInputReply.val()};
-		/* console.log(reply); */ 
+		console.log(reply); 
 		
 		replyService.update(reply, function(result) {
 			
