@@ -25,8 +25,8 @@
 	
 	<!-- 수정 -->
 	<update id="update">	
-		UPDATE tbl_reply
-			SET reply = #{reply}, replyer = #{replyer}, updatedate = sysdate 
+		UPDATE tbl_reply 
+			SET reply = #{reply},updatedate = sysdate 
 		WHERE rno = #{rno}
 	</update>
 	
