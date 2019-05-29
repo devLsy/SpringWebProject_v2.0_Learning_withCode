@@ -1,7 +1,7 @@
 /**
  *  답변 관련 js 모듈화
- */
 console.log("Reply Module...");
+ */
 
 /*즉시 실행 함수*/
 var replyService = (function() {
@@ -39,6 +39,7 @@ var replyService = (function() {
 					if(callback) {
 						//callback(data); // 댓글 목록만 가져오는 경우
 						callback(data.replyCnt, data.list);	// 댓글 숫자, 목록 둘다 가져오는 경우
+						/*console.log("replyCnt: " + data.replyCnt);*/
 					}
 				}).fail(function(xhr, status, err) {
 			if (error) {

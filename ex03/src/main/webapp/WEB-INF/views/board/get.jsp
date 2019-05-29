@@ -163,14 +163,14 @@ $(document).ready(function() {
 	
 	/* 전체 댓글 목록조회해서 동적으로 생성 */
 	function showList(page) {
-			console.log("page: " + page);
+			/* console.log("page: " + page); */
 			
-			replyService.getList({bno:bnoValue, page: page || 1}, function(list) {
+			replyService.getList({bno:bnoValue, page: page || 1}, function(replyCnt, list) {
 			
-			console.log("replyCnt: " + replyCnt);	
-			console.log("list: " + list);	
-			console.log(list);	
-			
+			/* console.log("replyCnt: " + replyCnt);		
+			console.log("list: " + list);
+			*/
+				
 			if(page == -1) {
 				pageNum = Math.ceil(replyCnt / 10.0);
 				showList(pageNum);
@@ -191,35 +191,35 @@ $(document).ready(function() {
 				/* 댓글작성 날짜*/
 				str += " <smal class='pull-right text-muted'>" + replyService.displayTime(list[i].replyDate) + "</smal></div>";
 				/* 댓글내용 */
-				str += "<p>" + list[i].reply+"</p></div></li>";
+				str += "<p class='replyContent'>" + list[i].reply+"</p></div></li>";
 			}	
 			
 				
 			/* console.log("str: " + str); */
 			replyUL.html(str);
-			showReplyPage(replyCnt);
+			showReplyPage(replyCnt); 
 		});	
 		/* end function */
 	} 	
 	/* end showList() */
-	
+		
 	
 	var pageNum = 1;
 	var replyPageFooter = $(".panel-footer");
 	
 	/* 댓글 페이징 표시 */
-	function showReplyPage(relyCnt) {
+	function showReplyPage(replyCnt) {
 		
-		var endNum = Math.ceil(pageNum / 10.0);
-		console.log("endNum: " + endNum);
+		var endNum = Math.ceil(pageNum / 10.0) * 10;
 		var startNum = endNum - 9;
-		console.log("startNum: " + startNum);
+		/* console.log("startNum: " + startNum + "\n" + "endNum: " + endNum); */
 		
 		var prev = startNum != 1;
 		var next = false;
 		
 		if(endNum * 10 >= replyCnt) {
 			endNum = Math.ceil(replyCnt / 10.0);
+			/* console.log("endNum2: " + endNum); */
 		}
 		
 		if(endNum * 10 < replyCnt) {
@@ -229,14 +229,15 @@ $(document).ready(function() {
 		var str = "<ul class='pagination pull-right'>";
 		
 		if(prev) {
-			str += "<li class='page-item'><a class='page-link' href='  " + (startNum -1) + " '>Previous</a></li>";
+			str+= "<li class='page-item'><a class='page-link' href='"+(startNum -1)+"'>Previous</a></li>";
 		}
 
 		for(var i = startNum; i <= endNum; i++) {
 			
-			var active = pageNum == 1 ? "active" : "";
+			var active = pageNum == i ? "active" : "";
 			
-			str+= "<li class='page-item "+active+" '><a class='page-link' href='"+i+"'>"+i+"</a></li>";
+			str+= "<li class='page-item "+active+"'><a class='page-link' href='"+i+"'>"+i+"</a></li>";
+			
 		}		
 		
 		if(next) {
@@ -244,17 +245,23 @@ $(document).ready(function() {
 		}
 	
 		str += "</ul><div>";
-		console.log("str: " + str);
-		
+		/* console.log("str: " + str); */	
+			
 		replyPageFooter.html(str);
 }
 	
-	
-	
-	
-	
-	
-	
+	/* 페이지 번호 클릭 시 새로운 댓글 조회 */
+	replyPageFooter.on("click", "li a", function(e) {
+		e.preventDefault();
+		/* console.log("page click!!"); */
+		
+		var targetPageNum = $(this).attr("href");
+		/* console.log("targetPageNum: " + targetPageNum); */
+		
+		pageNum = targetPageNum;
+		
+		showList(pageNum);
+	});
 	
 			
 	var modal = $(".modal");
@@ -300,7 +307,6 @@ $(document).ready(function() {
 			modal.modal("hide");
 			
 			/* 전체 댓글 조회 갱신 */
-			/* showList(1); */
 			showList(-1);
 			
 		});
@@ -332,13 +338,13 @@ $(document).ready(function() {
 	modalModBtn.on("click", function(e) {
 		
 		var reply = {rno: modal.data("rno"), reply: modalInputReply.val()};
-		console.log(reply); 
+		/* console.log(reply); */ 
 		
 		replyService.update(reply, function(result) {
 			
-			alert(result);
+			alert(result);	
 			modal.modal("hide");
-			showList(1);	
+			showList(pageNum);	
 		});
 			
 	});
@@ -352,7 +358,7 @@ $(document).ready(function() {
 	   	        
 	   	      alert(result);
 	   	      modal.modal("hide");
-	   	      showList(1);
+	   	      showList(pageNum);
 	   	      			
 	   	  });
 	});

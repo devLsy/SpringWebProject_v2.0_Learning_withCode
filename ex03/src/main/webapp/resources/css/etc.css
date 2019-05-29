@@ -1,2 +1,4 @@
 @charset "UTF-8";
 
+div.header {cursor: pointer;}
+p.replyContent {cursor: pointer;}
