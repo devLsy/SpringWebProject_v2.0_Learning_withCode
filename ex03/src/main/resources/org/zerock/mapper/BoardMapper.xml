@@ -38,11 +38,11 @@ SELECT * FROM tbl_board WHERE bno > 0
 <select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
 <![CDATA[
   select 
-    bno, title, content, writer, regdate, updatedate
+    bno, title, content, writer, regdate, updatedate, replycnt
   from 
       (
       select /*+INDEX_DESC(tbl_board pk_board) */
-        rownum rn, bno, title, content, writer, regdate, updatedate 
+        rownum rn, bno, title, content, writer, regdate, updatedate, replycnt 
       from 
         tbl_board
       where 
@@ -104,7 +104,10 @@ VALUES(SEQ_BOARD.nextval , #{title}, #{content}, #{writer})
 	WHERE bno = #{bno}
 </update>
 
-
+<update id="updateReplyCnt">
+	UPDATE tbl_board
+		SET replycnt = replycnt + #{amount} WHERE bno = #{bno}
+</update>
 
 
 
