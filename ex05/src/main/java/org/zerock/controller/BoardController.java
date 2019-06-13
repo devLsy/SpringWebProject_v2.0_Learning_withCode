@@ -1,5 +1,10 @@
 package org.zerock.controller;
 
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,7 +12,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.zerock.domain.BoardAttachVO;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.PageDTO;
@@ -41,8 +48,14 @@ public class BoardController {
 	@PostMapping("/register")
 	public String resister(BoardVO board, RedirectAttributes rttr) {
 		
+		log.info("==============================================");
 		log.info("register: " + board.toString());
 		
+		if(board.getAttachList() != null) {
+			board.getAttachList().forEach(attach -> log.info(attach));
+		}
+		
+		log.info("==============================================");
 		service.register(board);
 		
 		rttr.addFlashAttribute("result", board.getBno());
@@ -88,6 +101,18 @@ public class BoardController {
 		
 		return "redirect:/board/list" + cri.getListLink();
 	}	
+	
+	@GetMapping(value = "/getAttachList",
+						produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<BoardAttachVO>> getAttachList(Long bno) {
+		
+		log.info("getAttachList : " + bno);
+		
+		return new ResponseEntity<List<BoardAttachVO>>(service.getAttachList(bno), HttpStatus.OK);
+		
+	}
+	
 	
 	
 	
