@@ -21,6 +21,16 @@
 		SELECT * FROM tbl_attach WHERE bno = #{bno}
 	</select>
 	
+	<!-- 첨부파일 삭제 -->
+	<delete id="deleteAll">
+		DELETE FROM tbl_attach WHERE bno = #{bno}		
+	</delete>
+	
+	<!-- 어제날짜 파일 목록 조회 -->
+	<select id="getOldFiles" resultType="org.zerock.domain.BoardAttachVO">
+		SELECT * FROM tbl_attach WHERE uploadpath = to_char(sysdate -1, 'yyyy\mm\dd')
+	</select>
+	
 
 
 

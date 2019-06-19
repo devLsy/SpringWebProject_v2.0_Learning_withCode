@@ -1,5 +1,8 @@
 package org.zerock.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -95,12 +98,18 @@ public class BoardController {
 	public String remove(@RequestParam("bno") Long bno, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
 		
 		log.info("remove..." + bno);
+		
+		List<BoardAttachVO> attachList = service.getAttachList(bno);
+		
+		log.info("attachList: " + attachList);
+		
 		if(service.remove(bno)) {
+			deleteFiles(attachList);
 			rttr.addFlashAttribute("result", "success");	
 		}
 		
 		return "redirect:/board/list" + cri.getListLink();
-	}	
+	}		
 	
 	@GetMapping(value = "/getAttachList",
 						produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -110,6 +119,34 @@ public class BoardController {
 		log.info("getAttachList : " + bno);
 		
 		return new ResponseEntity<List<BoardAttachVO>>(service.getAttachList(bno), HttpStatus.OK);
+		
+	}
+	
+	private void deleteFiles(List<BoardAttachVO> attachList) {
+		
+		if(attachList == null || attachList.size() == 0) {
+			return;
+		}
+		
+		log.info("delete attach files~!!");
+		log.info("attachList: " + attachList);
+		
+		attachList.forEach(attach -> {
+				try {
+					Path file = Paths.get("C:\\dev\\private\\upload\\tmp" + attach.getUploadPath() + "\\" + attach.getUuid() + "_" + attach.getFileName());
+					log.info("file: " + file);
+					Files.deleteIfExists(file);
+					
+					if(Files.probeContentType(file).startsWith("image")) {
+						Path thumbNail = Paths.get("C:\\dev\\private\\upload\\tmp" + attach.getUploadPath() + "\\s_" + attach.getUuid()+ "_" + attach.getFileName());
+						log.info("thumbNail: " + thumbNail);
+						Files.delete(thumbNail);
+					}
+				} catch (Exception e) {
+						log.error("delete file error: " + e.getMessage());
+				} // end catch
+			
+		}); // end foreach
 		
 	}
 	

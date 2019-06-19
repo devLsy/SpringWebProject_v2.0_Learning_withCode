@@ -66,7 +66,7 @@
 			<version>1.2.15</version>
 			<exclusions>
 				<exclusion>
-					<groupId>javax.mail</groupId>	
+					<groupId>javax.mail</groupId>
 					<artifactId>mail</artifactId>
 				</exclusion>
 				<exclusion>
@@ -136,8 +136,8 @@
 			<artifactId>lombok</artifactId>
 			<version>1.18.0</version>
 			<scope>provided</scope>
-		</dependency>	
-		
+		</dependency>
+
 		<!-- spring-test -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -159,28 +159,28 @@
 			<artifactId>jackson-dataformat-xml</artifactId>
 			<version>2.9.9</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.8.2</version>
 		</dependency>
-		
+
 		<!-- commons-fileupload -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.3.3</version>
 		</dependency>
-		
+
 		<!-- spring-tx -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
 		<dependency>
 			<groupId>com.zaxxer</groupId>
@@ -201,7 +201,7 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>1.3.2</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/log4jdbc-log4j2-jdbc4.1 -->
 		<dependency>
 			<groupId>org.bgee.log4jdbc-log4j2</groupId>
@@ -216,8 +216,23 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz-jobs -->
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz-jobs</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+
+
 	</dependencies>
-	<build>	
+	<build>
 		<plugins>
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>
