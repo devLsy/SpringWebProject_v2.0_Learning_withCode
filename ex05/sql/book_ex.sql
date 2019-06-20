@@ -22,9 +22,10 @@ select /*+INDEX_DESC(tbl_board pk_board) */
         rownum rn, bno, title, content, writer, regdate, updatedate, replycnt 
       from 
         tbl_board
-    ORDER BY bno desc; 
+    ORDER BY bno desc;  
                 
-              
+SELECT * FROM tbl_attach WHERE uploadpath = to_char(sysdate -1, 'yyyy\mm\dd');              
+
 
 
              
