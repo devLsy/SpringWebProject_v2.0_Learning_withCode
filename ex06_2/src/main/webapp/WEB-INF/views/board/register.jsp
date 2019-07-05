@@ -52,11 +52,11 @@
       				
       				<div class="form-group">
       					<label>Writer</label><input class="form-control" name="writer" value='<sec:authentication property="principal.username"/>' readonly="readonly">
-      				</div>
+      				</div>	
       				
-      				<button type="submit" class="btn btn-default">Submit Button</button>
-      				<button type="reset" class="btn btn-default">Reset Button</button>
-      				<button type="button" id="listBtn" data-oper='list' class="btn btn-info">List</button>
+      				<button type="submit" class="btn btn-default">Submit Button</button>	
+      				<button type="reset" class="btn btn-default">Reset Button</button>	
+      				<button type="button" id="listBtn" data-oper='list' class="btn btn-info">List</button>	
       			</form>
       			
       		</div>
@@ -214,7 +214,7 @@
     		 		
     		 		$(uploadResultArr).each(function(i, obj) {
     		 			
-    		 			// image type
+    		 			// image type	
     		 			if(obj.image) {
     		 				var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/s_"+obj.uuid +"_"+obj.fileName);
     		 				console.log("fileCallPath: " + fileCallPath);

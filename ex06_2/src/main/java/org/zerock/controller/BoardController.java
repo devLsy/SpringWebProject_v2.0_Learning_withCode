@@ -65,10 +65,11 @@ public class BoardController {
 		
 		rttr.addFlashAttribute("result", board.getBno());
 		return "redirect:/board/list";
-	}
+	}	
 	
 	// 게시글 입력 폼 처리
 	@GetMapping("/register")
+	@PreAuthorize("isAuthenticated()")
 	public void register() {
 		
 	}
