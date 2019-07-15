@@ -85,6 +85,12 @@ VALUES(SEQ_BOARD.nextval , #{title}, #{content}, #{writer})
 	
 	INSERT INTO tbl_board (bno, title, content, writer)
 	VALUES (#{bno}, #{title}, #{content}, #{writer})
+</insert>	
+	
+<!-- 회원가입 -->
+<insert id="insertMember">
+	INSERT INTO tbl_member(userid, userpw, username) 
+	values (#{userid}, #{userpw}, #{username})	
 </insert>
 
 <select id="read" resultType="org.zerock.domain.BoardVO">

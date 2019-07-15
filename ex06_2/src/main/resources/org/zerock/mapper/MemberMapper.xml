@@ -27,6 +27,14 @@
   		tbl_member mem LEFT OUTER JOIN tbl_member_auth auth on mem.userid = auth.userid
   			WHERE mem.userid = #{userid} 
   	</select>
+  	
+  	<!-- 회원가입 -->
+<insert id="insertMember">
+	INSERT INTO tbl_member(userid, userpw, userName) 
+	values (#{userid}, #{userpw}, #{userName})			
+</insert>
+
+	
 	
 
 

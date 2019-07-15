@@ -3,13 +3,16 @@ package org.zerock.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.zerock.domain.BoardAttachVO;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
+import org.zerock.domain.MemberVO;
 import org.zerock.mapper.BoardAttachMapper;
 import org.zerock.mapper.BoardMapper;
+import org.zerock.mapper.MemberMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;
@@ -24,7 +27,13 @@ public class BoardServiceImpl implements BoardService{
 	private BoardMapper mapper;
 	
 	@Setter(onMethod_ = @Autowired)
+	private MemberMapper memberMapper;	
+	
+	@Setter(onMethod_ = @Autowired)
 	private BoardAttachMapper attachMapper;
+	
+	@Setter(onMethod_ = @Autowired)
+	private PasswordEncoder pwencoder;	
 
 	@Transactional
 	@Override
@@ -105,7 +114,13 @@ public class BoardServiceImpl implements BoardService{
 		
 		return attachMapper.findByBno(bno);	
 	}
-
-
+	
+	// 회원가입 처리
+	@Override
+	public void registerMember(MemberVO memberVO) {
+		log.info("member Insert ~!" + memberVO);
+		memberVO.setUserpw(pwencoder.encode(memberVO.getUserpw()));
+		memberMapper.insertMember(memberVO);
+	}	
 
 }

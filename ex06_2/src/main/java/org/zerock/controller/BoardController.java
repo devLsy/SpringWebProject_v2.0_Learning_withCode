@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.BoardAttachVO;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
+import org.zerock.domain.MemberVO;
 import org.zerock.domain.PageDTO;
 import org.zerock.service.BoardService;
 
@@ -73,6 +74,23 @@ public class BoardController {
 	public void register() {
 		
 	}
+	
+	// 회원가입 폼 처리
+	@RequestMapping("/sign_up")
+	public void signUp() {
+		log.info("sign_up Request~!");
+	}
+	
+	// 회원가입 입력 처리
+	@RequestMapping("/signUpProcess")
+	public String signUpProcess(MemberVO memberVO) {
+		log.info("============================================");
+		log.info("signUpProcess Request~!");
+		log.info("join_memberInfo: " + memberVO);
+		log.info("============================================");
+		service.registerMember(memberVO);
+		return "redirect:/board/list";
+	}	
 	
 	// 게시글 상세 조회
 	@GetMapping({"/get", "/modify"})

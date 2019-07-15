@@ -11,7 +11,11 @@
 <meta charset="UTF-8">	
 <title>boardList</title>	
 </head>	
-<body>
+<body>	
+			<div class="panel-heading">
+				<button id='signUp' type="button" class="btn btn-info pull-left">sign Up</button>
+			</div>		
+
 			<div class="panel-heading">
 				<button id='regBtn' type="button" class="btn btn-xs pull-right">Register New Board</button>
 			</div>
@@ -176,6 +180,11 @@
 				self.location = "/board/register";	
 			});		
 			
+			// 회원가입 버튼 이벤트 리스너
+			$("#signUp").on("click", function() {
+				self.location = "/board/sign_up";	
+			});		
+				
 			var actionForm = $("#actionForm");
 			
 			$(".paginate_button a").on("click", function(e) {
