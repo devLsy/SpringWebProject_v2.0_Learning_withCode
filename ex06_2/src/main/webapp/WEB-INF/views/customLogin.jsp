@@ -64,16 +64,17 @@
 								</div>
 								<!-- Change this to a button or input when using this as a form -->
 								<a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>
+								<a href="/board/sign_up" class="btn btn-lg btn-block">Sign Up</a>
 							</fieldset>
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
 						</form>
 
 					</div>
-				</div>
+				</div>	
 			</div>
 		</div>
-	</div>
+	</div>	
 
 	
 

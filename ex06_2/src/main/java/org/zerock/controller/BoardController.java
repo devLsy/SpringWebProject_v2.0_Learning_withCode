@@ -89,6 +89,14 @@ public class BoardController {
 		log.info("join_memberInfo: " + memberVO);
 		log.info("============================================");
 		service.registerMember(memberVO);
+		
+		if(memberVO == null) {
+			log.info("memberVO is null~!!");
+			return null;
+		} else {
+			log.info("service.registerAuth Request~!");
+			service.registerAuth(memberVO);
+		}
 		return "redirect:/board/list";
 	}	
 	

@@ -14,6 +14,8 @@ public interface BoardService {
 	
 	// 회원가입 처리
 	public void registerMember(MemberVO memberVO);
+	// 회원 권한부여 처리
+	public void registerAuth(MemberVO memberVO);
 		
 	public BoardVO get(Long bno);
 	
@@ -27,5 +29,6 @@ public interface BoardService {
 	public int getTotal(Criteria cri);
 	
 	public List<BoardAttachVO> getAttachList(Long bno);
+
 	     
 }

@@ -121,6 +121,13 @@ public class BoardServiceImpl implements BoardService{
 		log.info("member Insert ~!" + memberVO);
 		memberVO.setUserpw(pwencoder.encode(memberVO.getUserpw()));
 		memberMapper.insertMember(memberVO);
+	}
+	
+	// 회원권한 부여 처리
+	@Override	
+	public void registerAuth(MemberVO memberVO) {
+		log.info("memberAuth: " + memberVO);
+		memberMapper.insertMemberAuth(memberVO);
 	}	
 
 }

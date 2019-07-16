@@ -34,6 +34,12 @@
 	values (#{userid}, #{userpw}, #{userName})			
 </insert>
 
+<!-- 회원권한부여 -->
+<insert id="insertMemberAuth">
+	INSERT INTO tbl_member_auth (userid, auth) 
+	VALUES (#{userid}, 'ROLE_USER')	
+</insert>
+
 	
 	
 
