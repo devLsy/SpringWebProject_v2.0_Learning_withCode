@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <%@include file="../includes/header.jsp" %>
 
@@ -12,10 +13,17 @@
 <title>boardList</title>	
 </head>	
 <body>	
+			<sec:authorize access="isAnonymous()">
 			<div class="panel-heading">
 				<button id='signUp' type="button" class="btn btn-info pull-left">sign Up</button>
 			</div>		
-
+			</sec:authorize>
+			
+			<sec:authorize access="isAuthenticated()">
+				<sec:authentication property="principal.username" var="user_id" />
+					<div class="panel-heading loginArea">welcome~! <span class="userArea">${user_id}</span></div>
+			</sec:authorize>		
+							
 			<div class="panel-heading">
 				<button id='regBtn' type="button" class="btn btn-xs pull-right">Register New Board</button>
 			</div>

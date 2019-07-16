@@ -1,3 +1,4 @@
 @charset "UTF-8";
 
 p.replyContent {cursor: pointer;}
+.loginArea span.userArea {color: red; font-weight: bold; font-size: large;}	

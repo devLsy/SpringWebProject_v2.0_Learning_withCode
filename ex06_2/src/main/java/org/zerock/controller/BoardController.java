@@ -41,13 +41,10 @@ public class BoardController {
 	public void list(Criteria cri,Model model) {
 		log.info("list: " + cri);
 		model.addAttribute("list", service.getList(cri));
-//		model.addAttribute("pageMaker", new PageDTO(cri, 123));
-		
 		int total = service.getTotal(cri);
 		log.info("total: " + total);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
-	
 	
 	// 게시글 등록처리
 	@PostMapping("/register")
@@ -96,7 +93,7 @@ public class BoardController {
 		} else {
 			log.info("service.registerAuth Request~!");
 			service.registerAuth(memberVO);
-		}
+		}	
 		return "redirect:/board/list";
 	}	
 	
