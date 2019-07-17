@@ -1,8 +1,9 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
     
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
 
@@ -64,7 +65,7 @@ input#keyWord {height:30px;}
                 <a class="navbar-brand" href="/board/list">Spring5_board by devLsy</a>
             </div>
             <!-- /.navbar-header -->
-
+			
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -285,7 +286,14 @@ input#keyWord {height:30px;}
             
             <!-- /.navbar-static-side -->
         </nav>
-
+		
+		<div class="video_area">
+				<video controls autoplay loop width="100%" height="200">
+				<source src="<c:url value='/resources/video/crud_1.mp4' />">
+				이 브라우저는 video태그를 지원하지 않습니다.
+				</video>
+		</div>
+		
         <div id="page-wrapper">
         
         <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
