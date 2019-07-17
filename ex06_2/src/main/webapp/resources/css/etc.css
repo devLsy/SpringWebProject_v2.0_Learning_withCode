@@ -1,4 +1,5 @@
 @charset "UTF-8";
 
 p.replyContent {cursor: pointer;}
-.loginArea span.userArea {color: red; font-weight: bold; font-size: large;}	
+.loginArea span.userArea {color: red; font-weight: bold; font-size: large;}
+.main_img {width: 400px;}	

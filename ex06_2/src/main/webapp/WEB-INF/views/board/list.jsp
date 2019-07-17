@@ -29,14 +29,19 @@
 			</div>
 			<!-- /.panel-heading -->
 			
-			
-			
+			<div class="video_area">
+				<video controls autoplay loop width="100%" height="200">
+				<source src="<c:url value='/resources/video/crud_1.mp4' />">
+				이 브라우저는 video태그를 지원하지 않습니다.
+				</video>
+			</div>	
+					
 	<table class="table table-striped table-bordered table-hover">
 			<caption>boardList</caption>
 			<colgroup>
 				<col width="100">
 				<col>	
-				<col width="110">
+				<col width="110">	
 				<col width="100">	
 				<col width="80">	
 			</colgroup>
